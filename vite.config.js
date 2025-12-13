@@ -5,6 +5,6 @@ export default defineConfig({
   plugins: [react()],
   base: "/age-and-gender-prediction/",
   build: {
-    outDir: "docs",
+    outDir: "build",
   },
 });
