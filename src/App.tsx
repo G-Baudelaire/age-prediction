@@ -124,9 +124,7 @@ export default function App() {
         </button>
 
         {error && <p className="error-text">{error}</p>}
-        {result && (
-          <PredictionResult age={result.age} gender={result.gender} />
-        )}
+        {result && (<PredictionResult age={result.age} gender={result.gender} />)}
       </div>
     </div>
   );
