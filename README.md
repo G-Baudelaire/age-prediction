@@ -1,6 +1,6 @@
-# Age & Gender Prediction (Frontend)
+# Age Prediction
 
-React + TypeScript single-page app for predicting a person’s **age** and **gender** from a face photo.  
+React + TypeScript single-page app for predicting a person’s **age** from a face photo.  
 This project is a **frontend only** and expects an external API to perform the actual prediction.
 
 > 🧠 The backend / ML model is **not** included here — you plug in your own API.
@@ -12,7 +12,7 @@ This project is a **frontend only** and expects an external API to perform the a
 - 📷 Upload a face image from your device
 - 👀 See a live preview of the selected image
 - 📡 Send the image to a prediction API via `fetch`
-- 📊 Display the predicted **age** and **gender**
+- 📊 Display the predicted **age** 
 - ⚠️ User-friendly error messages for:
   - No image selected
   - Invalid file type (non-image uploads)
@@ -136,7 +136,7 @@ Main pieces in `src/`:
 
     * `selectedFile`
     * `previewUrl`
-    * `result` (`{ age, gender }`)
+    * `result` (`{ age }`)
     * `loading` / `error`
   * Validates uploads:
 
@@ -168,7 +168,6 @@ Main pieces in `src/`:
   * Displays the prediction:
 
     * `Age: <age>`
-    * `Gender: <gender>` (with pretty capitalization)
 
 * **`App.css` / `index.css`**
 
@@ -236,7 +235,7 @@ Make sure your deployed frontend’s `API_URL` points to a **publicly reachable*
 
 This project is intended as a **demo / educational frontend**.
 
-Age and gender prediction from images is inherently **imprecise** and may
+Age prediction from images is inherently **imprecise** and may
 reflect biases present in the underlying model and training data.
 
 * Do **not** use this project for:
