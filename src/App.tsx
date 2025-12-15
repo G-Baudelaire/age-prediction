@@ -4,12 +4,13 @@ import { ImageArea } from "./ImageArea";
 import { PredictionResult } from "./PredictionResult";
 import { UploadButton } from "./UploadButton";
 
-const API_URL: string = "http://localhost:8000/predict/custom"; // 🔹 replace with your actual API endpoint
+const API_BASE: string = "https://webapp-827050294030.europe-west1.run.app";
+const API_URL: string = `${API_BASE}/predict/custom`; // 🔹 replace with your actual API endpoint
 
 export default function App() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [result, setResult] = useState<{ age: number; gender: string } | null>(null);
+  const [result, setResult] = useState<{ age: number } | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
@@ -58,7 +59,7 @@ export default function App() {
       const response = await getPredictionResponse(selectedFile);
       const data: ApiPrediction = await response.json();
       throwIfDataInvalid(data);
-      setResult({ age: data.age, gender: data.gender });
+      setResult({ age: data.age });
     } catch (err) {
       setError(err.message);
       console.error(err);
@@ -97,9 +98,8 @@ export default function App() {
 
   function throwIfDataInvalid(data: ApiPrediction): void {
     const ageIsNotNumber = typeof data.age !== "number";
-    const genderIsNotMaleOrFemale = !["Male", "Female"].includes(data.gender);
 
-    if (ageIsNotNumber || genderIsNotMaleOrFemale) {
+    if (ageIsNotNumber) {
       throw new Error("Unexpected response format from API.");
     }
   }
@@ -107,7 +107,7 @@ export default function App() {
   return (
     <div className="app">
       <div className="card">
-        <h1>Age &amp; Gender Predictor</h1>
+        <h1>Age Predictor</h1>
         <p className="subtitle">
           Upload a face photo and click <strong>Predict</strong>.
         </p>
@@ -124,7 +124,7 @@ export default function App() {
         </button>
 
         {error && <p className="error-text">{error}</p>}
-        {result && (<PredictionResult age={result.age} gender={result.gender} />)}
+        {result && (<PredictionResult age={result.age} />)}
       </div>
     </div>
   );
