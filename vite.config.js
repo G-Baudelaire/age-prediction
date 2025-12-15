@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/age-and-gender-prediction/",
+  base: "/age-prediction/",
   build: {
     outDir: "docs",
   },
